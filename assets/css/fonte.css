@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'RedHatText-Italic';
+    src: url('../fonts/RedHatText-Italic-VariableFont_wght.ttf'); 
+  }
+
+  @font-face {
+    font-family: 'RedHatText-Variable';
+    src: url('../fonts/RedHatText-VariableFont_wght.ttf'); 
+  }
+  
+  
