@@ -1,15 +1,18 @@
+
+
+
 // Função para carregar o JSON e exibir os dados
 async function loadDesserts() {
   try {
-      const response = await fetch('dados.json');
-      const data = await response.json();
+    const response = await fetch('dados.json');
+    const data = await response.json();
 
-      // Seleciona o container onde os dados serão exibidos
-      const container = document.getElementById('menu-sobremesas');
+    // Seleciona o container onde os dados serão exibidos
+    const container = document.getElementById('menu-sobremesas');
 
-      // Itera sobre o array de sobremesas
-      data.forEach(dessert => {
-          let sobremesa = `
+    // Itera sobre o array de sobremesas
+    data.forEach(dessert => {
+      let sobremesa = `
            <div class="sobremesa" data-nome="${dessert.name}">
         <img class="imagen-sobremesa" src="${dessert.image.desktop}" alt="">
         <!--Botão adicionar sobremesa-->
@@ -42,11 +45,11 @@ async function loadDesserts() {
         </article>
       </div>
           `
-          container.innerHTML += sobremesa;
-      });
-     
+      container.innerHTML += sobremesa;
+    });
+
   } catch (error) {
-      console.error('Erro ao carregar o arquivo JSON:', error);
+    console.error('Erro ao carregar o arquivo JSON:', error);
   }
 
 
@@ -59,6 +62,10 @@ async function loadDesserts() {
 
   let menu_compra = document.querySelector("#menu_compra");
   let menu_compra_carrinho = document.querySelector("#menu_compra_carrinho");
+
+  let BtnConfimarCompra = document.querySelector('#confirmar_compra');
+  let TelaDeConfirmacao = document.querySelector("#overlay");
+  let ComecarNovaCompra = document.querySelector("#comecar_compra");
 
   sobremesas.forEach((sobremesa) => {
     let btn_add_sobremesa = sobremesa.querySelector(".adicionar_sobremesa");
@@ -74,7 +81,7 @@ async function loadDesserts() {
       menu_compra.style.display = 'none';
       menu_compra_carrinho.style.display = 'flex';
 
-      
+
 
       AumentarSobremesa = 1; // Resetar para 1 ao adicionar a sobremesa novamente
       QuantidadeDaSobremesa.innerHTML = AumentarSobremesa; // Resetar a contagem visualmente
@@ -104,9 +111,11 @@ async function loadDesserts() {
       QuantidadeDeItensNoCarrinho.innerHTML = `(${total})`;
       AtualizarValorTotal();
 
-      
+
     };
-    
+
+
+
 
     // BOTÃO AUMENTAR QUANTIDADE DA SOBREMESA
     BtnIncrementarSobremesa.onclick = function () {
@@ -167,9 +176,9 @@ async function loadDesserts() {
 
       carrinho.forEach((item) => {
         totalQuantidades += item.quantidade;
-        
+
       });
-      
+
       if (Number(totalQuantidades) == 0) {
         menu_compra_carrinho.style.display = 'none';
         menu_compra.style.display = 'flex';
@@ -215,7 +224,7 @@ async function loadDesserts() {
           let total = somarQuantidadesDoCarrinho(); // Atualizar o número de itens no carrinho
           QuantidadeDeItensNoCarrinho.innerHTML = `(${total})`;
 
-          
+
 
           // ATUALIZAR BOTÕES DE AUMENTAR E DIMINUIR SOBREMESA
           const sobremesaDiv = document.querySelector(`.sobremesa[data-nome='${nomeSobremesa}']`);
@@ -235,6 +244,8 @@ async function loadDesserts() {
       });
     }
 
+
+
     // FUNÇÃO ATUALIZAR O VALOR TOTAL DA COMPRA
     function AtualizarValorTotal() {
       let total = 0;
@@ -246,9 +257,34 @@ async function loadDesserts() {
       ValorTotalDaCompra.innerHTML = `R$${total.toFixed(2)}`;
     }
 
-   
+    //BOTÃO DE CONFIMARÇÃO DE COMPRA
+    BtnConfimarCompra.onclick = function () {
+      TelaDeConfirmacao.style.display = 'flex';
+    }
+
+    ComecarNovaCompra.onclick = function () {
+      TelaDeConfirmacao.style.display = 'none';
+      CarrinhoDeCompra.innerHTML = '';
+      QuantidadeDeItensNoCarrinho.innerHTML = `(${0})`;
+
+      const btnAtivo = document.querySelectorAll('.adicionar_sobremesa_ativo');
+      const btnAdiciona = document.querySelectorAll('.adicionar_sobremesa');
+
+      btnAtivo.forEach(BotaoAtivo => BotaoAtivo.style.display = 'none');
+      btnAdiciona.forEach(BotaoAdicionar => BotaoAdicionar.style.display = 'flex');
+
+      ValorTotalDaCompra.innerHTML = `R$${0}`;
+      menu_compra_carrinho.style.display = 'none';
+      menu_compra.style.display = 'flex';
+      
+      carrinho = [];
+    }
+
   });
-  
+
+
+
+
 }
 
 // Chama a função para carregar os dados quando a página for carregada
