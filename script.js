@@ -13,7 +13,7 @@ async function loadDesserts() {
     // Itera sobre o array de sobremesas
     data.forEach(dessert => {
       let sobremesa = `
-           <div class="sobremesa" data-nome="${dessert.name}">
+           <div class="sobremesa" data-nome="${dessert.name}" data-img="${dessert.image.thumbnail}">
         <img class="imagen-sobremesa" src="${dessert.image.desktop}" alt="">
         <!--Botão adicionar sobremesa-->
         <button class="adicionar_sobremesa">
@@ -74,12 +74,17 @@ async function loadDesserts() {
     let BtnIncrementarSobremesa = sobremesa.querySelector(".incrementar_sobremesa");
     let QuantidadeDaSobremesa = sobremesa.querySelector(".cont_sobremesa");
 
+    
+    
+
     let AumentarSobremesa = 1;
 
     // BOTÃO ADICIONAR SOBREMESA AO CARRINHO
     btn_add_sobremesa.onclick = function () {
       menu_compra.style.display = 'none';
       menu_compra_carrinho.style.display = 'flex';
+
+      
 
 
 
@@ -90,6 +95,9 @@ async function loadDesserts() {
       btn_add_sobremesa_ativo.style.display = "flex";
 
       var ItemSobremesa = sobremesa.querySelector(".info h2").innerText;
+      let Categoria = sobremesa.querySelector(".info h1").innerText;
+      let thumbnail = sobremesa.getAttribute('data-img');
+      
       let ValorDaSobremesa = Number(sobremesa.querySelector(".info p").getAttribute("valor-sobremesa"));
 
       // Verifique se a sobremesa já está no array
@@ -100,7 +108,9 @@ async function loadDesserts() {
       } else {
         carrinho.push({
           nome: ItemSobremesa,
+          categoria: Categoria,
           quantidade: AumentarSobremesa,
+          ImgThumbnail: thumbnail,
           valor: ValorDaSobremesa.toFixed(2),
         });
         AtualizarCarrinho();
@@ -110,7 +120,6 @@ async function loadDesserts() {
       let total = somarQuantidadesDoCarrinho();
       QuantidadeDeItensNoCarrinho.innerHTML = `(${total})`;
       AtualizarValorTotal();
-
 
     };
 
@@ -192,7 +201,7 @@ async function loadDesserts() {
 
       carrinho.forEach((MenuCarrinho) => {
         let SobremesaAdicionada = `
-          <section class="compra_adicionada">
+          <section class="compra_adicionada" categoria="">
             <div class="info_compra">
               <h2>${MenuCarrinho.nome}</h2>
               <p><span class="quantidade_da_sobremesa">${MenuCarrinho.quantidade}x</span> <span class="valor_da_sobremesa">@ R$${MenuCarrinho.valor}</span> <span class="valor_total">R$${Number(MenuCarrinho.quantidade * MenuCarrinho.valor).toFixed(2)}</span></p>
@@ -245,6 +254,8 @@ async function loadDesserts() {
     }
 
 
+    let ContainerSobremesasCompradas = document.querySelector('#Sobremesas_Comprada');
+    
 
     // FUNÇÃO ATUALIZAR O VALOR TOTAL DA COMPRA
     function AtualizarValorTotal() {
@@ -257,12 +268,35 @@ async function loadDesserts() {
       ValorTotalDaCompra.innerHTML = `R$${total.toFixed(2)}`;
     }
 
+
     //BOTÃO DE CONFIMARÇÃO DE COMPRA
     BtnConfimarCompra.onclick = function () {
       TelaDeConfirmacao.style.display = 'flex';
+      
+
+      carrinho.forEach(ConfirmaCompra => {
+        let sobremesa = `
+        <div class="sobremesa_confirmada">
+          
+          <section class="valor_e_quantiade">
+            <img src="${ConfirmaCompra.ImgThumbnail}" alt="">
+            <div class="titulos_sobremesa_confimada">
+              <h3>${ConfirmaCompra.nome}</h3>
+              <p>
+                <span class="sobremesa_confimada_quantidade">${ConfirmaCompra.quantidade}x</span>
+                <span class="sobremesa_confimada_valor">@ R$${ConfirmaCompra.valor}</span>
+              </p>
+            </div>
+          </section>
+          <p class="sobremesa_confimada_total">R$${Number(ConfirmaCompra.quantidade * ConfirmaCompra.valor).toFixed(2)}</p>
+        </div>
+        `;
+        ContainerSobremesasCompradas.innerHTML += sobremesa;
+      });
     }
 
     ComecarNovaCompra.onclick = function () {
+      ContainerSobremesasCompradas.innerHTML = '';
       TelaDeConfirmacao.style.display = 'none';
       CarrinhoDeCompra.innerHTML = '';
       QuantidadeDeItensNoCarrinho.innerHTML = `(${0})`;
@@ -276,7 +310,7 @@ async function loadDesserts() {
       ValorTotalDaCompra.innerHTML = `R$${0}`;
       menu_compra_carrinho.style.display = 'none';
       menu_compra.style.display = 'flex';
-      
+
       carrinho = [];
     }
 
