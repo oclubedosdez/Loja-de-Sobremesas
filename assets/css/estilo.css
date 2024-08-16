@@ -13,8 +13,6 @@
 body {
     background-color: var(--Rose-50);
     display: flex;
-    align-items: center;
-    justify-content: center;
     margin: 20px;
 }
 
@@ -182,7 +180,6 @@ h2 {
     height: 400px;
     font-family: 'RedHatText-Variable';
     box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.329);
-    top: -25rem;
 }
 
 #menu_compra h1 {
