@@ -1,0 +1,133 @@
+@media(max-width:721px) {
+    body {
+        /* border: 1px solid red; */
+        flex-wrap: wrap;
+        margin: 0;
+    }
+    #container {
+        margin-bottom: 2rem;
+        padding: 1rem;
+    }
+
+    /*Confimar Compra*/
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Certifique-se de que fique acima de outros elementos */
+}
+
+#confirmar-compra {
+    margin-top: 5rem;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#confirmar-compra #titulos {
+    /* border: 1px solid red; */
+    text-align: start;
+    line-height: 35px;
+    font-family: 'RedHatText-Variable';
+    width: 100%;
+}
+#confirmar-compra #titulos h1 {
+    font-size: 30px;
+}
+#confirmar-compra #titulos h2 {
+    font-size: 15px;
+    color: var(--Rose-900);
+    font-weight: 600;
+}
+
+#confirmar-compra #Sobremesas_Comprada {
+    /* border: 1px solid green; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+    height: 300px;
+    padding: 1rem;
+    background-color: var(--Rose-50);
+    overflow: auto;
+}
+
+
+
+#confirmar-compra #Sobremesas_Comprada .sobremesa_confirmada {
+    /* border: 1px solid orangered; */
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.192);
+    padding-bottom: 20px;
+}
+#confirmar-compra #Sobremesas_Comprada .sobremesa_confirmada .valor_e_quantiade {
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.valor_e_quantiade img {
+    border-radius: 10px;
+}
+.titulos_sobremesa_confimada {
+    /* border: 1px solid red; */
+    line-height: 30px;
+    text-align: start;
+    padding: 10px;
+    font-family: 'RedHatText-Variable';
+    font-weight: bold;
+}
+.titulos_sobremesa_confimada h3 {
+    color: var(--Rose-900);
+}
+.titulos_sobremesa_confimada span{
+    font-weight: bold;
+}
+.sobremesa_confimada_quantidade {
+    color: var(--Red);
+    margin-right: 10px;
+}
+.sobremesa_confimada_total {
+    font-weight: bold;
+    font-family: 'RedHatText-Variable';
+    font-size: 20px;
+}
+.sobremesa_confimada_valor {
+    color: var(--Rose-500);
+}
+
+#comecar_compra {
+    transition: all 0.5s;
+    border-radius: 30px;
+    width: 100%;
+    height: 10%;
+    border: none;
+    background-color: var(--Red);
+    font-family: 'RedHatText-Variable';
+    color: white;
+    padding: 1rem;
+    font-size: 20px;
+    cursor: pointer;
+}
+#comecar_compra:hover {
+    filter: brightness(0.8);
+}
+
+}
