@@ -5,8 +5,18 @@
         margin: 0;
     }
     #container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* border: 1px solid red; */
         margin-bottom: 2rem;
         padding: 1rem;
+    }
+    #menu-sobremesas {
+        /* border: 1px solid green; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     /*Confimar Compra*/
