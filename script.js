@@ -74,8 +74,8 @@ async function loadDesserts() {
     let BtnIncrementarSobremesa = sobremesa.querySelector(".incrementar_sobremesa");
     let QuantidadeDaSobremesa = sobremesa.querySelector(".cont_sobremesa");
 
-    
-    
+
+
 
     let AumentarSobremesa = 1;
 
@@ -84,7 +84,7 @@ async function loadDesserts() {
       menu_compra.style.display = 'none';
       menu_compra_carrinho.style.display = 'flex';
 
-      
+
 
 
 
@@ -97,7 +97,7 @@ async function loadDesserts() {
       var ItemSobremesa = sobremesa.querySelector(".info h2").innerText;
       let Categoria = sobremesa.querySelector(".info h1").innerText;
       let thumbnail = sobremesa.getAttribute('data-img');
-      
+
       let ValorDaSobremesa = Number(sobremesa.querySelector(".info p").getAttribute("valor-sobremesa"));
 
       // Verifique se a sobremesa já está no array
@@ -255,7 +255,7 @@ async function loadDesserts() {
 
 
     let ContainerSobremesasCompradas = document.querySelector('#Sobremesas_Comprada');
-    
+
 
     // FUNÇÃO ATUALIZAR O VALOR TOTAL DA COMPRA
     function AtualizarValorTotal() {
@@ -272,7 +272,7 @@ async function loadDesserts() {
     //BOTÃO DE CONFIMARÇÃO DE COMPRA
     BtnConfimarCompra.onclick = function () {
       TelaDeConfirmacao.style.display = 'flex';
-      
+
 
       carrinho.forEach(ConfirmaCompra => {
         let sobremesa = `
